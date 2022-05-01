@@ -2,7 +2,7 @@ version: '3'
 
 services:
   asterisk:
-    image: asterisk:latest
+    image: opusvl/asterisk:latest
     volumes:
       - "${PWD}/etc/asterisk/:/etc/asterisk:rw"
       - "${PWD}/log/asterisk:/var/log/asterisk"
@@ -19,7 +19,6 @@ services:
       - "8088:8088"
       - "10000-11000:10000-11000/udp"
       - "1314"
-    network_mode: "host"
 
   db:
     image: ${POSTGRES_IMAGE:-postgres}:${POSTGRES_IMAGE_VERSION:-12}
