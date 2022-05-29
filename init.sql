@@ -1370,6 +1370,44 @@ CREATE TABLE musiconhold_entry (
     PRIMARY KEY (name, position)
 );
 
+CREATE TABLE cdr ( 
+        calldate timestamp NOT NULL , 
+        clid varchar (80) NOT NULL , 
+        src varchar (80) NOT NULL , 
+        dst varchar (80) NOT NULL , 
+        dcontext varchar (80) NOT NULL , 
+        channel varchar (80) NOT NULL , 
+        dstchannel varchar (80) NOT NULL , 
+        lastapp varchar (80) NOT NULL , 
+        lastdata varchar (80) NOT NULL , 
+        duration int NOT NULL , 
+        billsec int NOT NULL , 
+        disposition varchar (45) NOT NULL , 
+        amaflags int NOT NULL , 
+        accountcode varchar (20) NOT NULL , 
+        uniqueid varchar (150) NOT NULL , 
+        userfield varchar (255) NOT NULL 
+);
+
+CREATE TABLE cdr ( 
+        calldate timestamp NOT NULL , 
+        clid varchar (80) NOT NULL , 
+        src varchar (80) NOT NULL , 
+        dst varchar (80) NOT NULL , 
+        dcontext varchar (80) NOT NULL , 
+        channel varchar (80) NOT NULL , 
+        dstchannel varchar (80) NOT NULL , 
+        lastapp varchar (80) NOT NULL , 
+        lastdata varchar (80) NOT NULL , 
+        duration int NOT NULL , 
+        billsec int NOT NULL , 
+        disposition varchar (45) NOT NULL , 
+        amaflags int NOT NULL , 
+        accountcode varchar (20) NOT NULL , 
+        uniqueid varchar (150) NOT NULL , 
+        userfield varchar (255) NOT NULL 
+);
+
 ALTER TABLE musiconhold_entry ADD CONSTRAINT fk_musiconhold_entry_name_musiconhold FOREIGN KEY(name) REFERENCES musiconhold (name);
 
 ALTER TYPE moh_mode_values RENAME TO moh_mode_values_tmp;
@@ -1383,3 +1421,23 @@ DROP TYPE moh_mode_values_tmp;
 UPDATE alembic_version SET version_num='fbb7766f17bc' WHERE alembic_version.version_num = '3a094a18e75b';
 
 GRANT ALL ON ALL TABLES IN SCHEMA public TO asterisk;
+
+insert into ps_aors (id, max_contacts) values (801, 1);
+insert into ps_aors (id, max_contacts) values (802, 1);
+insert into ps_aors (id, max_contacts) values (803, 1);
+
+insert into ps_aors (id, max_contacts) values (804, 1);
+insert into ps_aors (id, max_contacts) values (805, 1);
+insert into ps_auths (id, auth_type, password, username) values (801, 'userpass', 'Obelix', 801);
+insert into ps_auths (id, auth_type, password, username) values (802, 'userpass', 'Obelix', 802);
+insert into ps_auths (id, auth_type, password, username) values (803, 'userpass', 'Obelix', 803);
+insert into ps_auths (id, auth_type, password, username) values (804, 'userpass', 'Obelix', 804);
+insert into ps_auths (id, auth_type, password, username) values (805, 'userpass', 'Obelix', 805);
+
+
+insert into ps_endpoints (id, aors, auth, context, allow, dtls_auto_generate_cert, webrtc) values (801, '801', '801', 'call-router', 'ulaw,vp8,h264,vp9', 'yes', 'yes');
+insert into ps_endpoints (id, aors, auth, context, allow, dtls_auto_generate_cert, webrtc) values (802, '802', '802', 'call-router', 'ulaw,vp8,h264,vp9', 'yes', 'yes');
+
+insert into ps_endpoints (id, aors, auth, context, allow, dtls_auto_generate_cert, webrtc) values (803, '803', '803', 'call-router', 'ulaw,vp8,h264,vp9', 'yes', 'yes');
+insert into ps_endpoints (id, aors, auth, context, allow, dtls_auto_generate_cert, webrtc) values (804, '804', '804', 'call-router', 'ulaw,vp8,h264,vp9', 'yes', 'yes');
+insert into ps_endpoints (id, aors, auth, context, allow, dtls_auto_generate_cert, webrtc) values (805, '805', '805', 'call-router', 'ulaw,vp8,h264,vp9', 'yes', 'yes');
